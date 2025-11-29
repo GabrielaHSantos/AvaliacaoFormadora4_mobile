@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { createOutline, trashOutline } from 'ionicons/icons';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 
@@ -7,13 +8,15 @@ import { CommonModule } from '@angular/common';
   templateUrl: './contato-item.component.html',
   styleUrls: ['./contato-item.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule]
+  imports: [IonicModule, CommonModule],
 })
-export class ContatoItemComponent  implements OnInit {
+export class ContatoItemComponent {
   @Input() contact: any;
+  @Output() edit = new EventEmitter<any>();
+  @Output() delete = new EventEmitter<any>();
 
-  constructor() { }
+  createIcon = createOutline;
+  trashIcon = trashOutline;
 
-  ngOnInit() {}
-
+  constructor() {}
 }

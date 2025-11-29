@@ -1,0 +1,28 @@
+ion-fab-button {
+  --background: var(--ion-color-secondary);
+  --color: var(--ion-color-secondary-contrast);
+}
+
+ion-fab-button ion-icon {
+  font-size: 26px;
+}
+
+ion-modal.edit-modal {
+  --width: 92%;
+  --height: 65%;
+  --border-radius: 16px;
+}
+
+@media (min-width: 480px) {
+  ion-modal.edit-modal {
+    --width: 420px;
+    --height: auto;
+  }
+}
+
+ion-modal.edit-modal .edit-actions-inline {
+  padding: 12px;
+}
+ion-modal.edit-modal .edit-actions-inline ion-button {
+  margin-top: 8px;
+}

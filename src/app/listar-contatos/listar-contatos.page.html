@@ -1,16 +1,71 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Lista de Contatos</ion-title>
-    <ion-buttons slot="end">
-      <ion-button routerLink="/adicionar-contato">
-        <ion-icon name="add"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <app-contato-item *ngFor="let user of users" [contact]="user"></app-contato-item>
+    <ng-container *ngFor="let user of users">
+      <app-contato-item
+        [contact]="user"
+        (edit)="editar($event)"
+        (delete)="excluir($event)"
+      ></app-contato-item>
+    </ng-container>
   </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="secondary" routerLink="/adicionar-contato">
+      <ion-icon [src]="addIcon" style="color: #fff; font-size: 28px"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
+
+<ion-modal
+  [isOpen]="isEditOpen"
+  (didDismiss)="fecharEdicao()"
+  class="edit-modal"
+  [initialBreakpoint]="0.9"
+  [breakpoints]="[0, 0.75, 0.9]"
+>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="secondary">
+        <ion-title>Editar Contato</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="fecharEdicao()">Fechar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">Nome</ion-label>
+          <ion-input [(ngModel)]="editData.nome" placeholder="Nome"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input
+            [(ngModel)]="editData.email"
+            type="email"
+            placeholder="email@exemplo.com"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Telefone</ion-label>
+          <ion-input
+            [(ngModel)]="editData.telefone"
+            type="tel"
+            placeholder="(00) 00000-0000"
+          ></ion-input>
+        </ion-item>
+      </ion-list>
+      <div class="edit-actions-inline">
+        <ion-button expand="block" color="secondary" (click)="salvarEdicao()"
+          >Salvar</ion-button
+        >
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

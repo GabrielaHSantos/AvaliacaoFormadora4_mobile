@@ -1,6 +1,25 @@
 <ion-item>
   <ion-label>
-    <h2>{{ contact?.name }}</h2>
+    <h2>{{ contact?.name || contact?.nome }}</h2>
     <p>{{ contact?.email }}</p>
+    <p *ngIf="contact?.telefone">{{ contact?.telefone }}</p>
   </ion-label>
+  <ion-button
+    slot="end"
+    fill="clear"
+    *ngIf="contact?.source === 'firebase'"
+    (click)="edit.emit(contact)"
+    style="--color: var(--ion-color-secondary-shade)"
+  >
+    <ion-icon [src]="createIcon"></ion-icon>
+  </ion-button>
+  <ion-button
+    slot="end"
+    fill="clear"
+    color="danger"
+    *ngIf="contact?.source === 'firebase'"
+    (click)="delete.emit(contact)"
+  >
+    <ion-icon [src]="trashIcon"></ion-icon>
+  </ion-button>
 </ion-item>

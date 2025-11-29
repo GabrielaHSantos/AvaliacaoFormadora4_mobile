@@ -1,35 +1,46 @@
 import { Injectable } from '@angular/core';
-import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, push, onValue, Database, DataSnapshot } from 'firebase/database';
-import { environment } from '../../environments/environment';
+import { Observable, from, timer } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  deleteDoc,
+  updateDoc,
+  getDocs,
+} from 'firebase/firestore';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FirebaseService {
-  private db: Database;
+  private firestore = getFirestore();
 
-  constructor() {
-    const app = initializeApp(environment.firebaseConfig);
-    this.db = getDatabase(app);
+  addContato(contact: any) {
+    const contactsRef = collection(this.firestore, 'contacts');
+    return addDoc(contactsRef, contact);
   }
 
-  addContact(contact: any) {
-    const contactsRef = ref(this.db, 'contacts');
-    return push(contactsRef, contact);
+  getContatos(): Observable<any[]> {
+    const contactsRef = collection(this.firestore, 'contacts');
+    return timer(0, 10000).pipe(
+      switchMap(() => from(getDocs(contactsRef))),
+      map((snap) => snap.docs.map((d) => ({ id: d.id, ...d.data() } as any)))
+    );
   }
 
-  getContacts(callback: (contacts: any[]) => void) {
-    const contactsRef = ref(this.db, 'contacts');
-    onValue(contactsRef, (snapshot: DataSnapshot) => {
-      const data = snapshot.val();
-      const contacts: any[] = [];
-      if (data) {
-        Object.keys(data).forEach(key => {
-          contacts.push({ id: key, ...data[key] });
-        });
-      }
-      callback(contacts);
+  deleteContato(id: string) {
+    const contactDocRef = doc(this.firestore, `contacts/${id}`);
+    return deleteDoc(contactDocRef);
+  }
+
+  updateContato(contact: any) {
+    const contactDocRef = doc(this.firestore, `contacts/${contact.id}`);
+    return updateDoc(contactDocRef, {
+      nome: contact.nome,
+      email: contact.email,
+      telefone: contact.telefone,
     });
   }
 }

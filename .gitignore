@@ -68,3 +68,13 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Secrets
+/src/environments/firebase.config.ts
+/.env
+/.env.*
+/.env.local
+/.env.development.local
+/.env.production.local
+android/app/google-services.json
+ios/**/GoogleService-Info.plist
