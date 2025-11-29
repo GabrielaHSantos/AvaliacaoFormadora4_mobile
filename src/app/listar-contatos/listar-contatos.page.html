@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Lista de Contatos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/adicionar-contato">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <app-contato-item *ngFor="let user of users" [contact]="user"></app-contato-item>
+  </ion-list>
+</ion-content>
