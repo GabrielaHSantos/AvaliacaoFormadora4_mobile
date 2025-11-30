@@ -30,7 +30,7 @@ Este repositório contém o código-fonte da aplicação para a Avaliação Form
 
 ## Tarefas a Serem Executadas
 
-### Etapa 1 – Planejamento e Configuração Inicial (10 min)
+### Etapa 1 – Planejamento e Configuração Inicial 
 
 - Criar pasta `projeto-contatos`
 - Inicializar Git e criar `README.md` com: nome do projeto, objetivo do app, tecnologias utilizadas
@@ -38,7 +38,7 @@ Este repositório contém o código-fonte da aplicação para a Avaliação Form
 
 Pista: usar `git init`, `git add .`, `git commit -m "mensagem"`.
 
-### Etapa 2 – Criação de Componentes e Páginas (10 min)
+### Etapa 2 – Criação de Componentes e Páginas 
 
 - Criar projeto Ionic básico (template `blank`)
 - Gerar páginas `listar-contatos` e `adicionar-contato`
@@ -46,14 +46,14 @@ Pista: usar `git init`, `git add .`, `git commit -m "mensagem"`.
 
 Pista: `ionic start`, `ionic generate page`, `ionic generate component`.
 
-### Etapa 3 – Consumo de Serviço RESTful (10 min)
+### Etapa 3 – Consumo de Serviço RESTful 
 
 - Criar serviço `api.service.ts` para consumir `https://jsonplaceholder.typicode.com/users`
 - Exibir nome e e-mail dos usuários em `listar-contatos`
 
 Pista: usar `HttpClient.get()` e `*ngFor` no HTML.
 
-### Etapa 4 – CRUD com Firebase (5 min)
+### Etapa 4 – CRUD com Firebase 
 
 - Criar projeto no Firebase
 - Configurar Firebase no projeto Ionic
@@ -61,7 +61,7 @@ Pista: usar `HttpClient.get()` e `*ngFor` no HTML.
 
 Pista: habilitar Firebase e usar funções do SDK (ex.: `addDoc`, `collectionData`).
 
-### Etapa 5 – Script de Build e Produção (5 min)
+### Etapa 5 – Script de Build e Produção 
 
 - No `package.json`, adicionar os scripts:
   - `start`: `ionic serve`
@@ -69,22 +69,6 @@ Pista: habilitar Firebase e usar funções do SDK (ex.: `addDoc`, `collectionDat
 - Executar o build e fazer commit final: `Versão estável - Build gerado com sucesso`
 
 Pista: `npm run build` gera a produção em `www/`.
-
-## Entrega
-
-- Repositório Git com commits feitos
-- Projeto funcional no Ionic
-- Evidência do consumo da API e integração com Firebase
-- Build gerado (`www/`)
-
-## Critérios de Avaliação (Total: 15 pontos)
-
-- Planejamento e Controle de Versão (Git): 3,0
-- Criação de Páginas e Componentes (Ionic): 3,0
-- Consumo de API RESTful: 3,0
-- CRUD com Firebase: 3,0
-- Script de Build e Commit Final: 2,0
-- Organização e Clareza do Código: 1,0
 
 ## Como Executar
 
